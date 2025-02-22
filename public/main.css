@@ -43,3 +43,9 @@ footer {
   flex-wrap: wrap;
   gap: 10px;
 }
+.nav-link:not(.active) {
+  color: white;
+}
+.sidebar .nav-link.active {
+  color: blue;
+}

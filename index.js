@@ -12,14 +12,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res)=>{
-    res.render("index.ejs")
+    res.render("index.ejs", {currentPath:  req.path})
 });
 app.get("/about", (req, res)=>{
-    res.render("about.ejs")
+    res.render("about.ejs", {currentPath:  req.path})
 });
 app.get("/blogs", (req, res)=>{
     res.render("bloggs.ejs", {
         posts: arr,
+        currentPath:  req.path,
     })
     
 });

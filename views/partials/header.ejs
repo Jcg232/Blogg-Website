@@ -16,18 +16,22 @@
   <body>
     <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
       <a
-        href="/"
+        id="current-page"
         class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
       >
         <svg class="bi pe-none me-2" width="40" height="32">
           <use xlink:href="#bootstrap"></use>
         </svg>
-        <span class="fs-4">Home Page</span>
+        <span class="fs-4">Current Page</span>
       </a>
       <hr />
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="/" class="nav-link active" aria-current="page">
+          <a
+            href="/"
+            class="nav-link <%= currentPath === '/' ? 'active' : '' %>"
+            aria-current="page"
+          >
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#home"></use>
             </svg>
@@ -35,7 +39,10 @@
           </a>
         </li>
         <li>
-          <a href="/about" class="nav-link text-white">
+          <a
+            href="/about"
+            class="nav-link <%= currentPath === '/about' ? 'active' : '' %>"
+          >
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#speedometer2"></use>
             </svg>
@@ -43,7 +50,10 @@
           </a>
         </li>
         <li>
-          <a href="/blogs" class="nav-link text-white">
+          <a
+            href="/blogs"
+            class="nav-link <%= currentPath === '/blogs' ? 'active' : '' %>"
+          >
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#table"></use>
             </svg>
@@ -53,3 +63,21 @@
       </ul>
       <hr />
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = document.getElementById("current-page");
+        const currentPath = "<%= currentPath %>";
+
+        let pageName = "Home Page";
+
+        if (currentPath === "/about") {
+          pageName = "About Me";
+        } else if (currentPath === "/blogs") {
+          pageName = "Blogs";
+        }
+
+        currentPage.querySelector("span").textContent = pageName;
+      });
+    </script>
+  </body>
+</html>
